@@ -38,7 +38,7 @@
 						</div>
 						<div class="flex justify-between">
 							<span class="font-semibold">Jenis Beasiswa:</span>
-							<span>{{ $registration->jenis_beasiswa }}</span>
+							<span>{{ $registration->jenis_pilihan_beasiswa }}</span>
 						</div>
 						<div class="flex justify-between">
 							<span class="font-semibold">Status:</span>
@@ -55,8 +55,10 @@
 						<div class="flex justify-between">
 							<span class="font-semibold">File:</span>
 							<span>
-								<a href="{{ asset($registration->file_path) }}" target="_blank"
-									class="text-blue-600 hover:underline">Lihat Berkas</a>
+								<a href="{{ route('file.show', ['fileName' => basename($registration->file_path)]) }}"
+									class="text-blue-600 hover:underline">
+									Lihat Berkas
+								</a>
 							</span>
 						</div>
 					</div>

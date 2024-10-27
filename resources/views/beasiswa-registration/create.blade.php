@@ -8,6 +8,19 @@
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 			<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
+				@if (session('error'))
+				<div class="bg-red-500 text-white p-4 rounded">
+					{{ session('error') }}
+				</div>
+				@endif
+
+				@if(session('success'))
+				<div class="bg-green-500 text-white p-4 rounded mt-3">
+					{{ session('success') }}
+				</div>
+				@endif
+
 				<div class="p-6 text-gray-900">
 					<div class="p-6 rounded-lg">
 						<h1 class="text-2xl font-bold mb-6">Formulir Registrasi Beasiswa</h1>
@@ -18,14 +31,18 @@
 
 							<!-- Dropdown for Jenis Beasiswa -->
 							<div class="mb-4">
-								<label for="jenis_beasiswa" class="block text-sm font-medium text-gray-700">Jenis
+								<label for="jenis_pilihan_beasiswa"
+									class="block text-sm font-medium text-gray-700">Jenis
 									Beasiswa:</label>
-								<select id="jenis_beasiswa" name="jenis_beasiswa"
+								<select id="jenis_pilihan_beasiswa" name="jenis_pilihan_beasiswa"
 									class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500">
 									<option value="" disabled hidden>Pilih jenis beasiswa</option>
 									<option value="akademik">Beasiswa Akademik</option>
 									<option value="non_akademik">Beasiswa Non-Akademik</option>
 								</select>
+								@error('jenis_pilihan_beasiswa')
+								<p class="mt-1 text-red-600 text-sm">{{ $message }}</p>
+								@enderror
 							</div>
 
 							<!-- Name Field -->

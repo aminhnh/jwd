@@ -35,6 +35,11 @@ use Illuminate\Support\Facades\Auth;
         if (!Auth::check()) {
             return redirect()->route('beasiswa-registrations.index')->with('error', 'You must be logged in to create a registration.');
         }
+
+        $existingRegistration = BeasiswaRegistration::where('user_id', Auth::id())->first();
+        if ($existingRegistration) {
+            return redirect()->back()->with('error', 'You have already registered.');
+        }
     
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -49,7 +54,7 @@ use Illuminate\Support\Facades\Auth;
     
         try {
             $registration = BeasiswaRegistration::create([
-                'user_id' => auth()->id(),
+                'user_id' => Auth::id(),
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'phone_number' => $validatedData['phone_number'],

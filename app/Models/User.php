@@ -46,8 +46,8 @@ class User extends Authenticatable
         ];
     }
 
-        public function beasiswaRegistrations()
+    public function beasiswaRegistratios()
     {
-        return $this->hasMany(BeasiswaRegistration::class);
+        return $this->hasOne(BeasiswaRegistration::class);
     }
 }
